@@ -1,0 +1,21 @@
+<body></body>
+<script type="text/javascript">
+    function httpGet()
+    {
+        const urlParams = new URLSearchParams(window.location.search);
+        uri = urlParams.get('url')
+        if (!uri) {
+          return 'Hello there';
+        }
+        urlParams.delete('url')
+
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.open("GET", 'https://fantasy.premierleague.com/api/' + uri + '?' + urlParams.toString(), false); // false for synchronous request
+        xmlHttp.send(null);
+
+        return xmlHttp.responseText;
+    }
+
+    var body = document.getElementsByTagName("body")[0]
+    body.innerHTML = httpGet()
+</script>
